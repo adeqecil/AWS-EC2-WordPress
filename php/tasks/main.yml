@@ -1,0 +1,19 @@
+- name: Install PHP Remi Repository
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    update_cache: true
+    state: latest
+
+- name: Reset current PHP version and Enable PHP Remi Repository
+  shell: |
+    yum module reset php -y
+    yum module enable php:remi-7.4 -y
+  args:
+    warn: false
+
+- name: Install PHP and the Extensions
+  yum:
+    name: '{{ item }}'
+    update_cache: true
+    state: latest
+  loop: "{{ php_modules }}"

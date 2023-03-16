@@ -1,0 +1,24 @@
+- name: Download and extract wordpress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: "/var/www/{{ http_host }}"
+    creates: "/var/www/{{ http_host }}/wordpress"
+
+- name: Change ownership
+  file:
+    path: "/var/www/{{ http_host }}"
+    state: directory
+    recurse: true
+    owner: apache
+    group: apache
+
+- name: Templating WordPress config file
+  template:
+    src: "wp-config.php.j2"
+    dest: "/var/www/{{ http_host }}/wordpress/wp-config.php"
+
+- name: Restart Apache service
+  service:
+    name: httpd
+    state: restarted
+    enabled: true

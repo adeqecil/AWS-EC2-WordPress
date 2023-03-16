@@ -1,0 +1,22 @@
+mysql_root_password: wp_root_password#2023
+mysql_db: wp_db
+mysql_user: wp_user
+mysql_password: wp_password#2023
+php_modules:
+  - php
+  - php-mysqlnd
+  - php-curl
+  - php-gd
+  - php-mbstring
+  - php-xml
+  - php-xmlrpc
+  - php-soap
+  - php-intl
+  - php-zip
+mysql_modules:
+  - mysql
+  - mysql-server
+  - php-mysqlnd
+http_host: "wp.rozi.com"
+http_conf: "wp.rozi.com.conf"
+http_port: "80"

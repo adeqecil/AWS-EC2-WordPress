@@ -1,0 +1,17 @@
+- name: WordPress Deployment
+  hosts: localhost
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  pre_tasks:
+    - name: Updating Package
+      yum:
+        name: '*'
+        state: latest
+
+  roles:
+    - apache
+    - php
+    - mysql
+    - wordpress
